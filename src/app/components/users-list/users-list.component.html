@@ -1,0 +1,8 @@
+<button data-testid="fetch-users" (click)="fetchUsers()">Fetch users</button>
+<ul data-testid="users-list" *ngIf="users.length">
+  <li *ngFor="let user of users">
+    {{ user.name }}
+  </li>
+</ul>
+
+
