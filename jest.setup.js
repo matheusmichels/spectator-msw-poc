@@ -1,4 +1,4 @@
-import 'jest-preset-angular'
+import 'jest-preset-angular';
 import { server } from './src/mocks/server';
 
 beforeAll(() => server.listen());
