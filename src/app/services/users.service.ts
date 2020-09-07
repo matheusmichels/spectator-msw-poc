@@ -9,7 +9,6 @@ export class UsersService {
   constructor(private http: HttpClient) {}
 
   get(): Observable<any[]> {
-    console.log('calling users endpoint');
     return this.http.get<any[]>('https://jsonplaceholder.typicode.com/users');
   }
 }

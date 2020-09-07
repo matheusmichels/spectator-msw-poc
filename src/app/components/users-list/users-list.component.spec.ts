@@ -1,22 +1,31 @@
-import { Spectator, createComponentFactory, byTestId } from '@ngneat/spectator';
+import { HttpClientModule } from '@angular/common/http';
+import { byTestId, createComponentFactory, Spectator } from '@ngneat/spectator';
 
 import { UsersListComponent } from './users-list.component';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('UsersListComponent', () => {
   let spectator: Spectator<UsersListComponent>;
   const createComponent = createComponentFactory({
     component: UsersListComponent,
-    imports: [HttpClientTestingModule],
+    imports: [HttpClientModule],
   });
 
   beforeEach(() => (spectator = createComponent()));
 
   it('should create', () => {
+    expect(spectator.component).toBeTruthy();
+  });
+
+  it('should fetch users', (done) => {
     const button = spectator.query(byTestId('fetch-users'));
     spectator.click(button);
 
-    const list = spectator.query(byTestId('users-list'));
-    expect(list).toBeTruthy();
+    setTimeout(() => {
+      spectator.detectComponentChanges();
+
+      const list = spectator.query(byTestId('users-list'));
+      expect(list).toBeTruthy();
+      done();
+    });
   });
 });

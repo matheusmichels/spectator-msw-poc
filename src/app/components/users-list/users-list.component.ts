@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { UsersService } from 'src/app/services/users.service';
 
 @Component({
@@ -13,7 +13,6 @@ export class UsersListComponent {
 
   fetchUsers() {
     this.usersService.get().subscribe(users => {
-      console.log(users);
       this.users = users;
     });
   }
